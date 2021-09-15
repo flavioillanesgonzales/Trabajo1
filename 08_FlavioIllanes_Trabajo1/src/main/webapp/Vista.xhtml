@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+
+        <ui:composition template="./plantilla.xhtml">
+
+            <ui:define name="content">
+
+                <h:body>
+                    <p:growl id="msg"/>
+
+                    <f:event id="lista" listener="#{controlador.limpiar()}" type="preRenderView" />
+                    <h:form>
+                        <center>
+
+
+                            <h1 style="color: #000000" > autoComplete </h1>
+                        </center>
+                        <p:panelGrid columns="2" layout="flex">
+                            <p:outputLabel value="Distrito" />
+                            <p:autoComplete value="#{controlador.fac.CODUBI}" id="txtUbigeo" completeMethod="#{controlador.completeTextUbigeo}"
+                                            inputStyle="width: 135%" minQueryLength="2">
+                            </p:autoComplete>
+                        </p:panelGrid>
+
+                        <center>
+
+
+                            <h1 style="color: #000000" > selectBooleanButton </h1>
+                        </center>
+                        <p:panelGrid columns="2" layout="flex">
+                            <p:selectBooleanButton  id="buton" onLabel="Yes" offLabel="No" onIcon="pi pi-check" offIcon="pi pi-times" style="width:6rem" value="#{controlador.valor1}" >
+                                <p:ajax   update="msgButton msg" listener="#{controlador.mostrarMensaje1()}" />
+                            </p:selectBooleanButton>
+                            <p:message id="msgButton" for="buton"  showDetail="true" />
+                        </p:panelGrid>
+
+                        <center>
+
+
+                            <h1 style="color: #000000" > selectBooleanCheckbox </h1>
+                        </center>
+                        <p:panelGrid columns="2" layout="flex">
+
+                            <p:selectBooleanCheckbox value="#{controlador.valor2}" itemLabel="Ajax" >
+                                <p:ajax update="msg" listener="#{controlador.mostrarMensaje2()}" />
+                            </p:selectBooleanCheckbox>
+                            <p:message id="msgCHeck" for="buton"  showDetail="true" />
+                        </p:panelGrid>
+
+                    </h:form>  
+
+                </h:body>
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>
